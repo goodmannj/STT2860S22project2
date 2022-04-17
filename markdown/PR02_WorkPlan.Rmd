@@ -1,7 +1,7 @@
 ---
 title: "Group Work Plan"
 subtitle: "STT2860 S22 Project 02"
-author: "Authors: ALL GROUP MEMBER NAMES HERE"
+author: "Authors: Phu Tran, Nicholas Goodman, Angel Powell, Patrick Bautista"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
   html_document: 
@@ -12,14 +12,15 @@ output:
 
 **Work Plan/Assignments**
 
-ERASE THIS TEXT AND OUTLINE/EXPLAIN YOUR PLAN FOR COMPLETING THE PROJECT WORK
+We are planning to complete the data scientist this weekend. For part B and C, we'll split up each part and if we are having trouble on solving a problem, we will help each other and ask you for questions if needed. 
 
 **Completion Timeline**
 
-ERASE THIS TEXT AND OUTLINE/EXPLAIN YOUR PLANNED TIMELINE FOR TASK COMLETION
+All of us will do the data scientist and try to complete it this weekend. Depending on everyone's schedule, we'll try to either do one part together or we split it up and have it completed on next Friday. Next weekend, we will go over the project together and see if we made any errors before submitting the project.
 
 **Communication Plan**
 
-ERASE THIS TEXT AND OUTLINE/EXPLAIN YOUR PLAN FOR GROUP COMMUNICATION
+We'll communicate each other through a group text every couple of days to see how is everyone's progress. We'll let you know who is submitting the project through the group forums in ASU Learn. 
 
 ***
+

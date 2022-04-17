@@ -1,7 +1,7 @@
 ---
 title: "Group Project Update"
 subtitle: "STT2860 S22 Project 02"
-author: "Authors: ALL GROUP MEMBER NAMES HERE"
+author: "Authors: Phu Tran, Nicholas Goodman, Angel Powell, Patrick Bautista"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
   html_document: 
@@ -14,18 +14,18 @@ output:
 
 Refer back to your original work plan. Has anything changed? Who has completed what portions of the project? Explain.
 
-ERASE THIS TEXT AND ANSWER THE QUESTION
+All of us are done with part A over the weekend. On part B and C, we will be working intensively before Saturday. We will be sharing tasks on part B and C. On Sunday, we'll look over the project to check for errors and make sure that everyone is satisfied with the coding and answers. 
 
 **Completion Timeline Update**
 
 Refer back to your original timeline. Has anything changed? What pieces of the project are done and what are still left to do? Explain.
 
-ERASE THIS TEXT AND ANSWER THE QUESTION
+We all finished part A on time.  We are planning on working through the rest of B and C by Friday.  So far, not much has changed with our completion timeline.  We are working on schedule.
 
 **Communication Update**
 
 Refer back to your communication plan. Has anything changed? Has everyone communicated in an effective and timely manner? Explain.
 
-ERASE THIS TEXT AND ANSWER THE QUESTION
+We decided to have a few zoom meetings throughout the project. We will still text each other in the group chat. 
 
 ***

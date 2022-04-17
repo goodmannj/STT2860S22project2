@@ -1,6 +1,6 @@
 ---
 title: "Project 2B: Streaming Data"
-author: "PUT YOUR NAME HERE"
+author: " Phu Tran, Nicholas Goodman, Angel Powell, Patrick Bautista"
 date: '`r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
 output: 
   html_document: 
@@ -23,7 +23,8 @@ knitr::opts_chunk$set(
 ### Packages Used
 
 ```{r loadpackages}
-
+library(tidyverse)
+library(waffle)
 ```
 
 ### Datasets Used
@@ -35,13 +36,18 @@ The datasets were downloaded from [Disney+ Movies and TV Shows | Kaggle](https:/
 #### Disney+ Dataset
 
 ```{r loaddisneydata}
- 
+library(readr)
+disneypluscontent <- read_csv("/home/students/tranp1/gitprojects/STT2860S22project2/data/disneypluscontent.csv")
+
+glimpse(disneypluscontent)
 ```
 
 #### Streaming Dataset
 
 ```{r loadstreamingdata}
-
+library(readr)
+streamingcontent <- read_csv("/home/students/tranp1/gitprojects/STT2860S22project2/data/streamingcontent.csv")
+glimpse(streamingcontent)
 ```
 
 <hr>
@@ -55,7 +61,9 @@ The datasets were downloaded from [Disney+ Movies and TV Shows | Kaggle](https:/
 The Disney+ dataset contains a variable that gives information about the `rating` for each program offering. Convert the variable into a factor that puts the ratings in (roughly) ascending order of age restriction/audience: `TV-Y`, `TV-Y7`, `TV-Y7-FV`, `TV-G`, `G`, `TV-PG`, `PG`, `PG-13`, `TV-14`. If the `date_added` variable is not already in date format, convert it.  
 
 ```{r factorratings}
-
+disneypluscontent %>%
+  arrange(rating) 
+  
 ```
 
 #### Dataset #2
@@ -68,7 +76,13 @@ From the streaming content dataset, create a new dataset by doing the following.
 * Split the `Rotten Tomatoes` variable to separate the show rating from the max of `100`. Convert the show rating to a numerical variable.
 
 ```{r pivotlong}
-
+streamingcontentcondensed <- streamingcontent %>%
+  pivot_longer(c(`Netflix`, `Hulu`, `Prime Video`, `Disney+`), names_to = "Service", values_to = "YesNo") %>%
+  filter(YesNo == 1) %>%
+  separate(IMDb, into = c("IMDb rating", "IMDb max"), sep = "/") %>%
+  separate(`Rotten Tomatoes`, into = c("RT rating", "RT max"), sep = "/")
+  
+glimpse(streamingcontentcondensed)
 ```
 
 ### Visualization 1: Violin Plot
@@ -78,7 +92,7 @@ From the streaming content dataset, create a new dataset by doing the following.
 Create a violin plot of `release_year` (x-axis) grouped by `type` of program (y-axis) for programs on Disney+. Fill with a color of your choice. Add a boxplot inside the violin plot, as you did in one of the DataCamp exercises. Re-scale the x-axis so that tick marks appear at whole-decade intervals (e.g., 1980, 1990, 2000). Add an appropriate title and axis labels. Use other formatting as you choose to enhance effectiveness/appearance.
 
 ```{r violinplot}
-
+ggplot(disneypluscontent, aes(x = `release_year`, y = `type`, color = "red")) + geom_violin() + geom_boxplot(alpha = 0, width = 2) + xlim(1970, 2010) + labs(title = "Amount of shows and movies released every year", xaxis = "release_year", yaxis = "type")
 ```
 
 ### Visualization 2: Waffle Plot
@@ -94,6 +108,17 @@ Create a waffle plot to show the distribution of program `type` on Disney+.
 Hint: Use `round(100 * prop.table(table(DATASETNAME$VARIABLENAME)))` to create the input data for the waffle plot. Swap out the capital letter placeholders for the correct dataset name and variable name.
 
 ```{r waffleplot}
+disneyplustype <- disneypluscontent %>%
+  group_by(type) %>%
+  summarize(type = n()) %>%
+  mutate(type = round(100 * prop.table(table(disneypluscontent$type)))) 
+
+type_show <- disneyplustype$type 
+
+names(type_show) <- disneyplustype$title %>%
+  c("Movies" = "Movies", "TV Shows" = "TV Shows")
+
+waffle(type_show, colors = c("Grey", "Yellow")) + labs(title = "Streaming Content on Disney+", x = "Show per Square")
 
 ```
 
@@ -104,7 +129,13 @@ Hint: Use `round(100 * prop.table(table(DATASETNAME$VARIABLENAME)))` to create t
 Create a horizontal barplot to show the frequencies of the various `rating` categories for programs on Disney+ (i.e., use `y =` rather than `x =` for the variable you are plotting). **You will need to remove a couple `NA` values first.** Facet by `type` so that you have side-by-side plots for the two different program types. Add an appropriate title and axis labels, as well as other formatting to enhance effectiveness/appearance. 
 
 ```{r ratingsbarplot}
+disneyplusratings <- disneypluscontent %>%
+  filter(rating == c("TV-Y7-FV", "TV-Y7", "TV-Y", "TV-PG", "TV-G", "TV-14", "PG-13", "PG", "G"), type == c("Movie", "TV Show"))
 
+ggplot(disneyplusratings, aes(y = rating)) + geom_bar(fill = "black") + facet_grid(type ~ .) + labs(x = "Amount of Shows", y = "Ratings", title = "Ratings for Disney+ Shows")
+
+
+  
 ```
 
 ### Visualization 4: Services Bar Plot
@@ -114,7 +145,9 @@ Create a horizontal barplot to show the frequencies of the various `rating` cate
 Create a barplot to display how many shows are offered on each of the four streaming services. Choose appropriate colors, labels, themes, and/or and other types of formatting that you feel will enhance the meaning or visual appearance of the plot. 
 
 ```{r showsbarplot}
+area.color <- c("Blue", "Green", "Red", "Orange")
 
+ggplot(streamingcontentcondensed, aes(x = Service)) + geom_bar(fill = area.color) + labs(title = "Amount of Streaming Shows")
 ```
 
 ### Visualization 5: Choose a Plot!
@@ -122,7 +155,7 @@ Create a barplot to display how many shows are offered on each of the four strea
 Create one other plot of your choice using either dataset to explore a question of interest. You are welcome to perform additional manipulations on the data, if needed. Add an appropriate title and axis labels, as well as any other necessary formatting.
 
 ```{r}
-
+ggplot(streamingcontentcondensed, aes(x = Age)) + geom_bar(fill = "Blue") + labs(title = "Age of Streaming Content", x = "Age", y = "Content") 
 ```
 
 <hr>
@@ -133,25 +166,27 @@ Create one other plot of your choice using either dataset to explore a question 
 
 **ANSWER**
 
-1)
+1) Disney+ Shows, according to ratings, are family friendly.
 
-2)
+2) Disney+ (at the time the dataset was made) has less shows than other streaming services.
 
-3)
+3) Disney+ has more movies than television shows.
 
-4)
+4) There are more older movies on Disney+ than television shows.
 
-5)
+5) Movies on average are newer than television shows on Disney+.
 
 **Question 2:** What other data would you like to have, or which existing variables would you like to see transformed, if you were going to do further explorations or visualizations? Give at least two examples.
 
 **ANSWER**
 
-ERASE THIS TEXT AND ANSWER QUESTION HERE
+Obviously the main thing that would help enhance this project would be an updated list of streaming content.  Disney+ has more steaming shows now then when the data was collected.  Besides that, the Metacritic rating would be interesting for each show.  It may be one two many rating variables, but it still would be intreging data to know.
 
 **Question 3:** Explain the rationale behind the choices you made with regard to plot type, formatting, and so on, when you created Visualization 5. What motivated your decisions? 
 
 **ANSWER**
+
+It seemed interesting to see if there were any ratings differences among other streaming services besides Disney+.  NA was left in intentionally to see how many shows were not rated.  As previously thought, there was more mature content on all streaming services, but still some kid friendly content.     
 
 ***
 ```{r}

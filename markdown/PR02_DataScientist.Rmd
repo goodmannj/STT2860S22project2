@@ -12,38 +12,39 @@ output:
 
 **Q1: What is the name of the person interviewed?**
 
-ANSWER:
+ANSWER: David Meza
 
 **Q2: Why did you choose the particular interview you did?**
 
-ANSWER:
+ANSWER: I thought it would be interesting to hear from a important NASA worker.
 
 **Q3: Does the person consider themselves a data scientist?**
 
-ANSWER:
+ANSWER: Sort of.  He said he was a quasi, hybrid, and operational data scientist, but never said he was strictly a data scientist.
 
 **Q4: What is their formal and self-taught education in data science?**
 
-ANSWER:
+ANSWER: He first took a programming class in college after stumbling into it. He then learned more about it while developing databases in the finance industry.  He later went back and took several statistics classes in college.
 
 **Q5: What has been their career path? Did they start off in data science?**
 
-ANSWER:
+ANSWER: He first went to the University of Houston to study engineering.  Eventually from there he gained interest in programming but first went into the finance world.  After that, he eventually got a job at NASA to be a database developer, and is currently at NASA as a chief knowledge architect.  He went back to college in 2010 to get a Engineering Management masters degree, and took more statistics classes while looking for a doctorate degree.
 
 **Q6: What programs/technologies to they use when working in data science?**
 
-ANSWER:
+ANSWER: He used excel for visualization in his early years.  In future years, he used graph databases like neo4j, search databases with IHS coalfire, and other databases like elasticsearch and MongoDB.
 
 **Q7: What is one interesting (to you) data science problem they have worked on?**
 
-ANSWER:
+ANSWER: This likely would not be a typical data science problem, but I though it was interesting to see the effort that he put into understanding how to communicate with other people.  He went out of his way to get an engineering education to find ways to communicate better with other members of NASA.  All of the programming work would mean nothing if people did not understand it, and he understands that.
 
 **Q8: Are there any specific pieces of advice they gave that inspire/resonate with you?**
 
-ANSWER:
+ANSWER: Again, his emphasis on communication resonated with me.  It is very important in every single aspect of life, and so much more can get done if everyone understand each other better.  That includes data science, and is important to note when working with other people that may not be data scientists. 
 
 **Q9: Was there anything that surprised you or that you particularly identified with?**
 
-ANSWER:
+ANSWER: The amount of time that he spent in college surprised me.  I have not heard a lot of stories where people get a degree, then go back to college and get another degree to understand engineers better.  I would imagine that this is rare, and that most people do not do this, but it worked for him.    
 
 ***
+
